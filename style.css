@@ -29,60 +29,32 @@ body {
 }
 
 /* Header - Fixed Navigation */
-header {
-    background: var(--bg);
-    color: var(--fg);
-    padding: 20px 0;
-    text-align: center;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    border-bottom: 1px solid var(--fg-60);
-    box-shadow: 0 2px 10px var(--bg-60);
-}
-
-nav ul {
-    list-style: none;
-    padding: 0;
+/* Social Icons - Fixed Top Right */
+.social-icons {
+    position: fixed;
+    top: 24px;
+    right: 24px;
     display: flex;
-    justify-content: center;
+    gap: 16px;
+    z-index: 1000;
+}
+
+.social-icon {
+    display: inline-flex;
     align-items: center;
-}
-
-nav ul li {
-    margin: 0 25px;
-}
-
-nav ul li a {
+    justify-content: center;
     color: var(--fg);
+    font-size: 24px;
+    transition: all 0.2s ease;
     text-decoration: none;
-    font-weight: 600;
-    font-size: 1.05em;
-    transition: all 0.25s ease;
-    padding: 8px 14px;
-    border-radius: 6px;
-}
-
-nav ul li a:hover,
-nav ul li a:focus {
-    color: var(--bg);
-    background-color: var(--fg);
-    transform: translateY(-2px);
-    outline: 2px solid var(--fg);
-    outline-offset: 2px;
-}
-
-nav ul li a.active {
-    background-color: var(--fg);
-    color: var(--bg);
 }
 
 /* Hero Section */
 .hero {
     background: var(--bg);
     text-align: center;
-    padding: 60px 20px;
-    min-height: 100vh;
+    padding: 0 20px;
+    height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -307,13 +279,15 @@ footer p {
         height: 50vh;
         max-width: none;
     }
-    nav ul {
-        flex-direction: column;
-        gap: 10px;
+
+    .social-icons {
+        top: 16px;
+        right: 16px;
+        gap: 12px;
     }
 
-    nav ul li {
-        margin: 5px 0;
+    .social-icon {
+        font-size: 20px;
     }
 
     .hero h1 {
