@@ -78,7 +78,12 @@ body {
 }
 
 .hero-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
     text-align: left;
+    gap: 16px;
 }
 
 .hero-image {
@@ -277,6 +282,7 @@ footer p {
     }
 
     .hero-text {
+        align-items: center;
         text-align: center;
     }
 
