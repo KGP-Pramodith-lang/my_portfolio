@@ -208,8 +208,7 @@ body {
   outline: none;
 }
 
-.cta-button:hover,
-.cta-button:focus {
+.cta-button:hover {
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2),
     inset 0 -1px 0 rgba(0, 0, 0, 0.8), 0 6px 20px rgba(44, 248, 255, 0.4),
     0 0 20px rgba(44, 248, 255, 0.3);
