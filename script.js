@@ -110,6 +110,36 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
+  // Scroll-to-top button
+  const scrollTopBtn = document.getElementById("scrollTopBtn");
+  if (scrollTopBtn) {
+    const toggleScrollTopBtn = () => {
+      const shouldShow = window.scrollY > 300;
+      scrollTopBtn.classList.toggle("is-visible", shouldShow);
+    };
+
+    toggleScrollTopBtn();
+
+    window.addEventListener(
+      "scroll",
+      () => {
+        toggleScrollTopBtn();
+      },
+      { passive: true }
+    );
+
+    scrollTopBtn.addEventListener("click", () => {
+      const reduceMotion =
+        window.matchMedia &&
+        window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      window.scrollTo({
+        top: 0,
+        behavior: reduceMotion ? "auto" : "smooth",
+      });
+    });
+  }
+
   console.log("Portfolio website loaded successfully!");
   console.log("All content is editable via IDs for easy customization.");
 });
