@@ -368,6 +368,139 @@ document.addEventListener("DOMContentLoaded", function () {
     .querySelectorAll(".photo-gallery")
     .forEach((gallery) => initPhotoGallery(gallery));
 
+  // Projects carousel (horizontal scroll + arrows + dots)
+  const initProjectsCarousel = (projectsRoot) => {
+    const track = projectsRoot.querySelector(".projects-track");
+    const prevBtn = projectsRoot.querySelector(".gallery-arrow--left");
+    const nextBtn = projectsRoot.querySelector(".gallery-arrow--right");
+    const dotsRoot = projectsRoot.querySelector(".projects-dots");
+
+    if (!track || !prevBtn || !nextBtn || !dotsRoot) return;
+
+    const cards = Array.from(track.querySelectorAll(".project-card"));
+    if (cards.length === 0) return;
+
+    const getGapPx = () => {
+      const styles = window.getComputedStyle(track);
+      const gap = styles.gap || styles.columnGap || "0px";
+      const parsed = parseFloat(gap);
+      return Number.isFinite(parsed) ? parsed : 0;
+    };
+
+    const getTrackPaddingLeft = () => {
+      const styles = window.getComputedStyle(track);
+      const parsed = parseFloat(styles.paddingLeft || "0px");
+      return Number.isFinite(parsed) ? parsed : 0;
+    };
+
+    const getScrollStep = () => {
+      const first = cards[0];
+      if (!first) return Math.max(280, track.clientWidth * 0.9);
+      return first.getBoundingClientRect().width + getGapPx();
+    };
+
+    const setArrowState = () => {
+      const maxScrollLeft = track.scrollWidth - track.clientWidth;
+      prevBtn.disabled = track.scrollLeft <= 1;
+      nextBtn.disabled = track.scrollLeft >= maxScrollLeft - 1;
+    };
+
+    const setActiveDot = (activeIndex) => {
+      const dots = Array.from(dotsRoot.querySelectorAll(".photo-dot"));
+      dots.forEach((dot, idx) => {
+        const isActive = idx === activeIndex;
+        dot.classList.toggle("is-active", isActive);
+        dot.setAttribute("aria-current", isActive ? "true" : "false");
+      });
+    };
+
+    const getActiveIndexFromViewport = () => {
+      const trackRect = track.getBoundingClientRect();
+      const trackCenter = trackRect.left + trackRect.width / 2;
+      let bestIndex = 0;
+      let bestDist = Number.POSITIVE_INFINITY;
+
+      cards.forEach((card, idx) => {
+        const rect = card.getBoundingClientRect();
+        const center = rect.left + rect.width / 2;
+        const dist = Math.abs(center - trackCenter);
+        if (dist < bestDist) {
+          bestDist = dist;
+          bestIndex = idx;
+        }
+      });
+
+      return bestIndex;
+    };
+
+    const scrollToIndex = (idx) => {
+      const card = cards[idx];
+      if (!card) return;
+
+      const paddingLeft = getTrackPaddingLeft();
+      track.scrollTo({
+        left: card.offsetLeft - paddingLeft,
+        behavior: reduceMotion ? "auto" : "smooth",
+      });
+    };
+
+    // Build dots (one per project)
+    dotsRoot.innerHTML = "";
+    cards.forEach((_, idx) => {
+      const dot = document.createElement("button");
+      dot.type = "button";
+      dot.className = "photo-dot";
+      dot.setAttribute("aria-label", `Go to project ${idx + 1}`);
+      dot.addEventListener("click", () => scrollToIndex(idx));
+      dotsRoot.appendChild(dot);
+    });
+
+    // Initial state
+    setArrowState();
+    setActiveDot(getActiveIndexFromViewport());
+
+    prevBtn.addEventListener("click", () => {
+      track.scrollBy({
+        left: -getScrollStep(),
+        behavior: reduceMotion ? "auto" : "smooth",
+      });
+    });
+
+    nextBtn.addEventListener("click", () => {
+      track.scrollBy({
+        left: getScrollStep(),
+        behavior: reduceMotion ? "auto" : "smooth",
+      });
+    });
+
+    let rafId = null;
+    track.addEventListener(
+      "scroll",
+      () => {
+        if (rafId != null) return;
+        rafId = window.requestAnimationFrame(() => {
+          rafId = null;
+          setArrowState();
+          setActiveDot(getActiveIndexFromViewport());
+        });
+      },
+      { passive: true }
+    );
+
+    window.addEventListener(
+      "resize",
+      () => {
+        setArrowState();
+        setActiveDot(getActiveIndexFromViewport());
+      },
+      { passive: true }
+    );
+  };
+
+  document
+    .querySelectorAll(".projects")
+    .forEach((projects) => initProjectsCarousel(projects));
+
   initScrollReveal();
 
   console.log("Portfolio website loaded successfully!");
