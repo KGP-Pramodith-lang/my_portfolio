@@ -4,6 +4,8 @@
   --bg: #051819;
   --bg-alt: #000000;
 
+  --state-bar-height: 64px;
+
   --fg: #f1f3f4;
   --fg-90: rgba(241, 243, 244, 0.9);
   --fg-80: #9fb3ad;
@@ -472,7 +474,7 @@ body.is-loaded .hero-image img {
 /* Prevent fixed state bar from covering headings when using anchor navigation */
 .hero,
 .section {
-  scroll-margin-top: 84px;
+  scroll-margin-top: var(--state-bar-height);
 }
 
 .section-dark {
