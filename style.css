@@ -419,6 +419,13 @@ body.is-loaded .hero-image img {
   gap: 16px;
 }
 
+.hero-degree {
+  margin-top: -6px;
+  color: var(--fg-80);
+  font-size: clamp(1.05rem, 2vw, 1.35rem);
+  letter-spacing: 0.02em;
+}
+
 .hero-image {
   display: flex;
   justify-content: center;
