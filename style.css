@@ -80,17 +80,16 @@ body {
   }
 }
 
-/* Header - Fixed Navigation */
-/* Search Bar - Fixed Top Left */
-.search-bar-container {
+.state-bar-container {
   position: fixed;
-  top: 0px;
-  left: 0px;
+  top: 16px;
+  left: 16px;
+  width: fit-content;
+  z-index: 1000;
 }
 
-.search-bar {
-  width: 100%;
-  max-width: 420px;
+.state-bar {
+  width: min(420px, calc(100vw - 32px));
 
   height: 50px;
   padding: 12px 16px;
@@ -108,7 +107,7 @@ body {
   outline: none;
 }
 
-.search-bar::placeholder {
+.state-bar::placeholder {
   color: rgba(241, 243, 244, 0.5);
 }
 
