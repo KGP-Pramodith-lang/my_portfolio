@@ -80,6 +80,17 @@ body {
   }
 }
 
+@keyframes textGlowPulse {
+  0%,
+  100% {
+    text-shadow: 0 0 0 rgba(44, 248, 255, 0);
+  }
+  50% {
+    text-shadow: 0 0 12px rgba(44, 248, 255, 0.45),
+      0 0 22px rgba(44, 248, 255, 0.22);
+  }
+}
+
 /* Initial load: state bar + hero content */
 .state-bar {
   opacity: 0;
@@ -183,6 +194,12 @@ body.is-loaded .hero-image img {
     animation: none !important;
     transition: none !important;
   }
+
+  .state-link:hover {
+    animation: none !important;
+    text-shadow: none !important;
+    transform: none !important;
+  }
 }
 
 /* Background cursor glow (behind content) */
@@ -280,19 +297,21 @@ body.is-loaded .hero-image img {
   text-decoration: none;
   color: var(--fg-80);
   border: 1px solid transparent;
-  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  text-shadow: none;
+  will-change: text-shadow, transform;
+  transition: color 0.2s ease, text-shadow 0.25s ease, transform 0.25s ease;
 }
 
 .state-link:hover {
-  color: var(--fg);
-  border-color: rgba(44, 248, 255, 0.35);
-  background: rgba(0, 0, 0, 0.22);
+  color: var(--accent);
+  transform: translateY(-1px);
+  text-shadow: 0 0 10px rgba(44, 248, 255, 0.28),
+    0 0 18px rgba(44, 248, 255, 0.14);
+  animation: textGlowPulse 1200ms ease-in-out infinite;
 }
 
 .state-link.active {
   color: var(--accent);
-  border-color: rgba(44, 248, 255, 0.55);
-  background: rgba(0, 0, 0, 0.28);
 }
 
 .state-bar::placeholder {
