@@ -53,22 +53,20 @@ document.addEventListener("DOMContentLoaded", function () {
     );
   }
 
-  // Smooth scroll for all navigation links
-  document.querySelectorAll("nav ul li a").forEach((anchor) => {
+  // Smooth scroll for all navigation links (state bar)
+  document.querySelectorAll(".state-nav a[href^='#']").forEach((anchor) => {
     anchor.addEventListener("click", function (e) {
-      // Only smooth scroll for links within the same page (starting with #)
-      if (this.getAttribute("href").startsWith("#")) {
-        e.preventDefault();
-        const targetId = this.getAttribute("href");
-        const targetSection = document.querySelector(targetId);
+      const href = this.getAttribute("href") || "";
+      if (!href.startsWith("#")) return;
 
-        if (targetSection) {
-          targetSection.scrollIntoView({
-            behavior: "smooth",
-            block: "start",
-          });
-        }
-      }
+      const targetSection = document.querySelector(href);
+      if (!targetSection) return;
+
+      e.preventDefault();
+      targetSection.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
     });
   });
 
@@ -88,7 +86,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Add active state to navigation items on scroll
   const sections = document.querySelectorAll(".section, .hero");
-  const navLinks = document.querySelectorAll("nav ul li a");
+  const navLinks = document.querySelectorAll(".state-nav a[href^='#']");
 
   window.addEventListener("scroll", () => {
     let current = "";
