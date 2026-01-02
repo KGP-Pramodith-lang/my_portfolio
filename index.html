@@ -16,10 +16,7 @@
 
     <!-- Search Bar -->
     <div class="search-bar-container">
-      <input type="text" class="search-bar" placeholder="Search..." />
-      <button class="search-btn">
-        <i class="fas fa-search"></i>
-      </button>
+      <div class="search-bar"></div>
     </div>
 
     <!-- Social Icons -->
@@ -91,7 +88,7 @@
     <!-- Portfolio Section -->
     <section id="portfolio" class="section section-dark">
       <div class="container">
-        <h2 class="section-title">My Portfolio</h2>
+        <h2 class="section-title">My Projects</h2>
         <p id="portfolioIntro">Here are some projects I've worked on:</p>
         <div class="portfolio-grid">
           <div class="portfolio-item">
@@ -122,6 +119,72 @@
     <!-- Contact Section -->
     <section id="contact" class="section">
       <div class="container">
+        <!-- Photo Gallery (Contact) -->
+        <div class="photo-gallery" aria-label="Contact photo gallery">
+          <h2 class="section-title">Photo Gallery</h2>
+          <div class="photo-gallery-carousel">
+            <button
+              class="gallery-arrow gallery-arrow--left"
+              type="button"
+              aria-label="Scroll photos left"
+            >
+              <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
+            </button>
+
+            <div
+              class="photo-gallery-track"
+              tabindex="0"
+              aria-label="Photo gallery track"
+            >
+              <div class="photo-card">
+                <img
+                  src="images/DSC05766.jpg"
+                  alt="Photo gallery image 1"
+                  loading="lazy"
+                />
+              </div>
+              <div class="photo-card">
+                <img
+                  src="images/IMG_4788.JPG"
+                  alt="Photo gallery image 2"
+                  loading="lazy"
+                />
+              </div>
+              <div class="photo-card">
+                <img
+                  src="images/IMG_4789.JPG"
+                  alt="Photo gallery image 3"
+                  loading="lazy"
+                />
+              </div>
+              <div class="photo-card">
+                <img
+                  src="images/IMG_4793.JPG"
+                  alt="Photo gallery image 4"
+                  loading="lazy"
+                />
+              </div>
+              <div class="photo-card">
+                <img
+                  src="images/IMG_4798.JPG"
+                  alt="Photo gallery image 5"
+                  loading="lazy"
+                />
+              </div>
+            </div>
+
+            <button
+              class="gallery-arrow gallery-arrow--right"
+              type="button"
+              aria-label="Scroll photos right"
+            >
+              <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+            </button>
+          </div>
+
+          <div class="photo-gallery-dots" aria-label="Photo gallery dots"></div>
+        </div>
+
         <h2 class="section-title">Contact Me</h2>
         <div class="contact-info">
           <p>
