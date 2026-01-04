@@ -136,7 +136,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const initScrollReveal = () => {
     const revealTargets = [
       ...document.querySelectorAll(
-        ".section-title, #aboutText, #portfolioIntro, .portfolio-item, .photo-card, .contact-info"
+        ".section-title, #aboutText, #portfolioIntro, .portfolio-item, .photo-card, .contact-actions, .contact-info"
       ),
     ];
 
