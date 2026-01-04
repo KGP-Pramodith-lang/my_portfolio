@@ -433,6 +433,10 @@ body.is-loaded .hero-image img {
   color: var(--accent);
 }
 
+.scroll-top-btn.scroll-top-btn--inline:hover .whatsapp-label {
+  color: var(--accent-2);
+}
+
 .scroll-top-btn.is-visible {
   opacity: 1;
   transform: translateY(0) scale(1);
@@ -751,6 +755,8 @@ body.is-loaded .hero-image img {
   box-shadow: 0 8px 20px var(--shadow);
   transition: all 0.25s ease;
   border: 1.5px solid var(--accent-30);
+  text-decoration: none;
+  color: inherit;
 }
 
 .portfolio-item h3 {
@@ -864,8 +870,18 @@ body.is-loaded .hero-image img {
 }
 
 /* Photo Gallery */
+#gallery.section .container {
+  min-height: calc(100vh - 100px);
+  display: flex;
+  flex-direction: column;
+}
+
 .photo-gallery {
-  margin-top: 48px;
+  margin-top: 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .photo-gallery-title {
